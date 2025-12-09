@@ -3,13 +3,6 @@ package ficha7;
 import java.util.Scanner;
 
 public class Ex711 {
-	private static void printArray(double[] arr) {
-		for (int i = 0; i < arr.length; i++) {
-			System.out.printf("arr[%d]: %d; ", i, arr[i]);
-		}
-		System.out.println();
-	}
-
 	private static void showMenu() {
 		System.out.println("1. Apresentar o maior número do vetor.");
 		System.out.println("2. Apresentar o menor número do vetor.");
@@ -52,27 +45,27 @@ public class Ex711 {
 					break;
 				case "7": {
 					System.out.printf("A inversão do vetor é:\n");
-					printArray(Arrays.flip(arr));
+					Arrays.printArray(Arrays.flip(arr));
 					break;
 				}
 				case "8": {
 					System.out.printf("O vetor ordenado por ordem decrescente é:\n");
-					printArray(Arrays.bigToSmall(arr));
+					Arrays.printArray(Arrays.bigToSmall(arr));
 					break;
 				}
 				case "9": {
 					System.out.printf("O vetor ordenado por ordem crescente é:\n");
-					printArray(Arrays.smallToBig(arr));
+					Arrays.printArray(Arrays.smallToBig(arr));
 					break;
 				}
 				case "10": {
 					arr = Arrays.removeIndex(arr);
 					System.out.printf("O novo vetor é:\n");
-					printArray(arr);
+					Arrays.printArray(arr);
 					break;
 				}
 				case "11":
-					printArray(arr);
+					Arrays.printArray(arr);
 					break;
 				case "0":
 					return;

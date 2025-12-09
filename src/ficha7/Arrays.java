@@ -40,7 +40,7 @@ public class Arrays {
 		Scanner sc = new Scanner(System.in);
 		String[] arr = new String[lenght];
 		for (int i = 0; i < lenght; i++) {
-			System.out.printf("%s para a posição %d:", prompt, i);
+			System.out.printf("%s para a posição %d: ", prompt, i);
 			if (sc.hasNextLine()) {
 				String str = sc.nextLine();
 				if (!str.isEmpty()) {
@@ -241,5 +241,32 @@ public class Arrays {
 			}
 		}
 		return count;
+	}
+
+	// Prints any type of array by overloading the method (means that the compiler
+	// selects the correct method for the input)
+	// <T> and T[] are generic Object Types, meaning they can take any Object
+	// (String, Double) and work correctly
+	public static <T> void printArray(T[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.printf("arr[%d]: %s; ", i, arr[i]);
+		}
+		System.out.println();
+	}
+
+	// overload printArray to int[]
+	public static void printArray(int[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.printf("arr[%d]: %s; ", i, arr[i]);
+		}
+		System.out.println();
+	}
+
+	// overload printArray to double[]
+	public static void printArray(double[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.printf("arr[%d]: %s; ", i, arr[i]);
+		}
+		System.out.println();
 	}
 }
