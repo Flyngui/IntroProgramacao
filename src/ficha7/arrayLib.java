@@ -2,7 +2,7 @@ package ficha7;
 
 import java.util.Scanner;
 
-public class Arrays {
+public class arrayLib {
 	// scans lenght values for an array that is lenght long, the values must be
 	// between min and max
 	public static double[] scanDoubleArr(String prompt, int lenght, double min, double max) {
@@ -147,6 +147,16 @@ public class Arrays {
 		return sum / arr.length;
 	}
 
+	public static int average(int[] arr) {
+		if (arr == null || arr.length == 0)
+			return 0;
+		int sum = 0;
+		for (int i = 0; i < arr.length; i++) {
+			sum += arr[i];
+		}
+		return sum / arr.length;
+	}
+
 	// finds an array's average not counting a single instance of the largest and
 	// smallest value
 	public static double trimmedAverage(double[] arr) {
@@ -156,7 +166,7 @@ public class Arrays {
 		for (int i = 0; i < arr.length; i++) {
 			sum += arr[i];
 		}
-		sum -= Arrays.largest(arr) + Arrays.smallest(arr);
+		sum -= arrayLib.largest(arr) + arrayLib.smallest(arr);
 		return sum / (arr.length - 2);
 	}
 

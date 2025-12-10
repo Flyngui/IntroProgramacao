@@ -51,7 +51,7 @@ public class Ex713b {
 		printCidades(arr);
 	}
 
-	// Número de cidades onde não choveu e temperatura foi negativa
+	// Número de cidades onde não choveu e temperatura foi inferior a tempCheck
 	private static void noRainTempCheckDown(String[] cidades, double[] temperatura, double[] precipitacao, int lenght,
 			double tempCheck) {
 		String[] arr = new String[lenght];
@@ -69,10 +69,10 @@ public class Ex713b {
 	public static void main(String[] args) {
 		int lenght = 4;
 		Scanner sc = new Scanner(System.in);
-		String[] cidades = Arrays.scanStringArr("Insira o nome da cidade", lenght);
-		double[] temperatura = Arrays.scanDoubleArr("temperatura", lenght, -100,
+		String[] cidades = arrayLib.scanStringArr("Insira o nome da cidade", lenght);
+		double[] temperatura = arrayLib.scanDoubleArr("temperatura", lenght, -100,
 				100);
-		double[] precipitacao = Arrays.scanDoubleArr("precipitação", lenght, 0, 100);
+		double[] precipitacao = arrayLib.scanDoubleArr("precipitação", lenght, 0, 100);
 
 		// cidades em que não choveu
 		noRain(cidades, temperatura, precipitacao, lenght);

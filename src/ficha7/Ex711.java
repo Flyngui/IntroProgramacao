@@ -25,47 +25,47 @@ public class Ex711 {
 			String input = sc.nextLine().trim();
 			switch (input) {
 				case "1":
-					System.out.printf("O maior valor no vetor é %d.\n", Arrays.largest(arr));
+					System.out.printf("O maior valor no vetor é %d.\n", arrayLib.largest(arr));
 					break;
 				case "2":
-					System.out.printf("O menor valor no vetor é %d.\n", Arrays.smallest(arr));
+					System.out.printf("O menor valor no vetor é %d.\n", arrayLib.smallest(arr));
 					break;
 				case "3":
-					System.out.printf("A média dos valores do vetor é %f.\n", Arrays.average(arr));
+					System.out.printf("A média dos valores do vetor é %f.\n", arrayLib.average(arr));
 					break;
 				case "4":
 					System.out.printf("A média dos valores do vetor, excluindo o maior e o menor é %f.\n",
-							Arrays.trimmedAverage(arr));
+							arrayLib.trimmedAverage(arr));
 					break;
 				case "5":
-					System.out.printf("O índice do maior valor no vetor é %d.\n", Arrays.largestIndex(arr));
+					System.out.printf("O índice do maior valor no vetor é %d.\n", arrayLib.largestIndex(arr));
 					break;
 				case "6":
-					System.out.printf("O índice do menor valor no vetor é %d.\n", Arrays.smallestIndex(arr));
+					System.out.printf("O índice do menor valor no vetor é %d.\n", arrayLib.smallestIndex(arr));
 					break;
 				case "7": {
 					System.out.printf("A inversão do vetor é:\n");
-					Arrays.printArray(Arrays.flip(arr));
+					arrayLib.printArray(arrayLib.flip(arr));
 					break;
 				}
 				case "8": {
 					System.out.printf("O vetor ordenado por ordem decrescente é:\n");
-					Arrays.printArray(Arrays.bigToSmall(arr));
+					arrayLib.printArray(arrayLib.bigToSmall(arr));
 					break;
 				}
 				case "9": {
 					System.out.printf("O vetor ordenado por ordem crescente é:\n");
-					Arrays.printArray(Arrays.smallToBig(arr));
+					arrayLib.printArray(arrayLib.smallToBig(arr));
 					break;
 				}
 				case "10": {
-					arr = Arrays.removeIndex(arr);
+					arr = arrayLib.removeIndex(arr);
 					System.out.printf("O novo vetor é:\n");
-					Arrays.printArray(arr);
+					arrayLib.printArray(arr);
 					break;
 				}
 				case "11":
-					Arrays.printArray(arr);
+					arrayLib.printArray(arr);
 					break;
 				case "0":
 					return;
@@ -82,7 +82,7 @@ public class Ex711 {
 		Scanner sc = new Scanner(System.in);
 		double[] arr = null;
 		try {
-			arr = Arrays.scanDoubleArr("", 10, 1, 20);
+			arr = arrayLib.scanDoubleArr("", 10, 1, 20);
 		} catch (IllegalArgumentException e) {
 			System.out.printf("Erro: %s\n", e);
 			sc.close();

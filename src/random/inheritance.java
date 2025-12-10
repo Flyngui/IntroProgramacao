@@ -13,6 +13,6 @@ public class inheritance {
 		int[] arr = { 1, 2, 3, 4 };
 		sum1(arr);
 		sub1(arr);
-		System.out.println(arr[0] + "" + arr[1]);
+		System.out.printf("%s\n", arr);
 	}
 }
