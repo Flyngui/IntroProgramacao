@@ -1,5 +1,7 @@
 package ficha7;
 
+import java.util.Arrays;
+
 public class Ex72 {
 	public static void main(String[] args) {
 		Object[][] introProg = {
@@ -16,5 +18,10 @@ public class Ex72 {
 				{ "Lara Carvalho", 13.4, 14.0, 12.5 },
 				{ "Rui Mendes", 11.8, 12.0, 11.5 }
 		};
+
+		// Print the array
+		for (Object[] row : introProg) {
+			System.out.println(Arrays.toString(row));
+		}
 	};
 }
