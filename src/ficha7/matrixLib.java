@@ -128,4 +128,50 @@ public class matrixLib {
 			}
 		}
 	}
+
+	public static void colBonusMoreThan(double[][] arr, int selCol, double min, double bonus) {
+		if (arr == null || arr.length == 0 || arr[0].length == 0)
+			throw new IllegalArgumentException("Array inválido.");
+		for (double[] row : arr) {
+			if (row[selCol] >= min) {
+				row[selCol] += bonus;
+			}
+		}
+	}
+
+	public static void colRound(double[][] arr, int selCol, int cDecimais) {
+		if (arr == null || arr.length == 0 || arr[0].length == 0)
+			throw new IllegalArgumentException("Array inválido.");
+		for (double[] row : arr) {
+			switch (cDecimais) {
+				case 1 -> row[selCol] = Math.round(row[selCol] * 10) / 10;
+				case 2 -> row[selCol] = Math.round(row[selCol] * 100) / 100;
+				case 3 -> row[selCol] = Math.round(row[selCol] * 1000) / 1000;
+			}
+		}
+	}
+
+	public static double colAverage(double[][] arr, int selCol) {
+		if (arr == null || arr.length == 0 || arr[0].length == 0)
+			throw new IllegalArgumentException("Array inválido.");
+		int count = 0;
+		double sum = 0;
+		for (double[] row : arr) {
+			sum += row[selCol];
+			count += 1;
+		}
+		return sum / count;
+	}
+
+	public static double rowAverage(double[][] arr, int selRow) {
+		if (arr == null || arr.length == 0 || arr[0].length == 0)
+			throw new IllegalArgumentException("Array inválido.");
+		int count = 0;
+		double sum = 0;
+		for (int j = 0; j < arr[selRow].length; j++) {
+			sum += arr[selRow][j];
+			count += 1;
+		}
+		return sum / count;
+	}
 }

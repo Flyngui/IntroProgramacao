@@ -112,6 +112,19 @@ public class arrayLib {
 		return n;
 	}
 
+	// scans stdin for a String and then tries to find its index in arr
+	public static int findIndex(String prompt, String[] arr) {
+		if (arr == null)
+			throw new IllegalArgumentException("Array inválido.");
+		String toFind = scanString(prompt);
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i].equals(toFind)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
 	// Requests a double
 	public static double scanDouble(String prompt) {
 		Scanner sc = new Scanner(System.in);
@@ -137,6 +150,45 @@ public class arrayLib {
 			if (sc.hasNextLine()) {
 				n = sc.nextInt();
 				break;
+			} else {
+				sc.next();
+			}
+		}
+		return n;
+	}
+
+	// requests a String
+	public static String scanString(String prompt) {
+		Scanner sc = new Scanner(System.in);
+		String str = null;
+		while (true) {
+			System.out.printf("%s", prompt);
+			if (sc.hasNextLine()) {
+				str = sc.nextLine().trim();
+				if (!str.isEmpty())
+					break;
+			} else {
+				System.out.println("Sting inserido é inválido.");
+				sc.next();
+			}
+		}
+		return str;
+	}
+
+	// requests an int in an interval of [min, max]
+	public static int scanIntInterval(String prompt, int min, int max) {
+		Scanner sc = new Scanner(System.in);
+		int n = 0;
+		while (true) {
+			System.out.printf("Para o intervalo [%d, %d] %s: ", min, max, prompt);
+			if (sc.hasNextLine()) {
+				n = sc.nextInt();
+				if (n >= min && n <= max) {
+					break;
+				} else {
+					n = 0;
+					System.out.println("O número deve estar dentro do intervalo dado.");
+				}
 			} else {
 				sc.next();
 			}
