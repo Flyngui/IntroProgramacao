@@ -3,7 +3,7 @@ package ficha7;
 import java.util.Scanner;
 
 public class arrayLib {
-	// scans lenght values for an array that is lenght long, the values must be
+	// scans lenght values for a double[] that is lenght long, the values must be
 	// between min and max
 	public static double[] scanDoubleArr(String prompt, int lenght, double min, double max) {
 		if (lenght <= 0)
@@ -14,10 +14,10 @@ public class arrayLib {
 			if (min == Double.MIN_VALUE || max == Double.MAX_VALUE) {
 				System.out.printf("%s para a posição %d:", prompt, i);
 			} else {
-				System.out.printf("Insira %s no intervalo [%f, %f] para a posição %d: ", prompt, min, max, i);
+				System.out.printf("%s no intervalo [%.2f, %.2f] para a posição %d: ", prompt, min, max, i);
 			}
 			if (sc.hasNextDouble()) {
-				double n = sc.nextInt();
+				double n = sc.nextDouble();
 				if (n >= min && n <= max) {
 					arr[i] = n;
 				} else {
@@ -27,7 +27,37 @@ public class arrayLib {
 			} else {
 				sc.next();
 				i--; // retry index
-				System.out.println("O valor tem de estar no intervalo para ser válido.");
+				System.out.println("Valor inserido é inválido.");
+			}
+		}
+		return arr;
+	}
+
+	// scans lenght values for a int[] that is lenght long, the values must be
+	// between min and max
+	public static int[] scanIntArr(String prompt, int lenght, int min, int max) {
+		if (lenght <= 0)
+			throw new IllegalArgumentException("Tamanho para array inválido.");
+		Scanner sc = new Scanner(System.in);
+		int[] arr = new int[lenght];
+		for (int i = 0; i < lenght; i++) {
+			if (min == -2147483648 || max == 2147483647) {
+				System.out.printf("%s para a posição %d:", prompt, i);
+			} else {
+				System.out.printf("%s no intervalo [%d, %d] para a posição %d: ", prompt, min, max, i);
+			}
+			if (sc.hasNextInt()) {
+				int n = sc.nextInt();
+				if (n >= min && n <= max) {
+					arr[i] = n;
+				} else {
+					i--; // retry index
+					System.out.println("O valor tem de estar no intervalo para ser válido.");
+				}
+			} else {
+				sc.next();
+				i--; // retry index
+				System.out.println("Valor inserido é inválido.");
 			}
 		}
 		return arr;
@@ -75,6 +105,38 @@ public class arrayLib {
 				} else {
 					System.out.println("Deve introduzir um índice válido para o tamanho do array.");
 				}
+			} else {
+				sc.next();
+			}
+		}
+		return n;
+	}
+
+	// Requests a double
+	public static double scanDouble(String prompt) {
+		Scanner sc = new Scanner(System.in);
+		double n = 0;
+		while (true) {
+			System.out.printf("%s ", prompt);
+			if (sc.hasNextLine()) {
+				n = sc.nextDouble();
+				break;
+			} else {
+				sc.next();
+			}
+		}
+		return n;
+	}
+
+	// requests an int
+	public static int scanInt(String prompt) {
+		Scanner sc = new Scanner(System.in);
+		int n = 0;
+		while (true) {
+			System.out.printf("%s ", prompt);
+			if (sc.hasNextLine()) {
+				n = sc.nextInt();
+				break;
 			} else {
 				sc.next();
 			}
@@ -275,7 +337,7 @@ public class arrayLib {
 	// overload printArray to double[]
 	public static void printArray(double[] arr) {
 		for (int i = 0; i < arr.length; i++) {
-			System.out.printf("arr[%d]: %s; ", i, arr[i]);
+			System.out.printf("arr[%.2f]: %s; ", i, arr[i]);
 		}
 		System.out.println();
 	}
