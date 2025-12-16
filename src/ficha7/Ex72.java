@@ -12,8 +12,13 @@ public class Ex72 {
 		int nTests = arrayLib.scanInt("Insira o número de testes realizados:");
 		double[][] grades = new double[nStudents][nTests];
 
+		boolean blockMenu1 = false;
 		while (true) {
-			printMenu1();
+			if (blockMenu1 == false) {
+				printMenu1();
+			} else {
+				printMenu2();
+			}
 			System.out.printf("Escolha a opção a executar: ");
 			String input = sc.nextLine().trim();
 			switch (input) {
@@ -38,19 +43,20 @@ public class Ex72 {
 					double bonus = arrayLib.scanDouble("Insira o bonus para adicionar às notas:");
 					matrixLib.colBonusMoreThan(grades, selectTest, min, bonus);
 				}
-				// arredondar a c casas decimais
+				// arredondar selTest a c casas decimais
 				case "6" -> {
 					int selTest = arrayLib.scanIndex("Insira o teste para arredondar:", nTests);
 					int cDecimais = arrayLib.scanIntInterval("insira o número de casas decimais para arredondamento",
-							1, 3);
+							0, 3);
+					matrixLib.colRound(grades, selTest, cDecimais);
 				}
-				// calcular a média de 1 teste
+				// calcular a média de 1 teste selTest
 				case "7" -> {
 					int selTest = arrayLib.scanIndex("Insira o teste para calcular a média:", nTests);
 					double avg = matrixLib.colAverage(grades, selTest);
 					System.out.printf("A média do teste %d, é %.2f\n", selTest, avg);
 				}
-				// média de 1 aluno
+				// média de 1 aluno selStudent
 				case "8" -> {
 					int selStudent = arrayLib.findIndex("Insira o nome do aluno para calcular a média:", students);
 					if (selStudent == -1) {
@@ -60,27 +66,41 @@ public class Ex72 {
 					double avg = matrixLib.rowAverage(grades, selStudent);
 					System.out.printf("A média do aluno %s, é %.2f\n", students[selStudent], avg);
 				}
-				// case "9": {
-				// System.out.printf("O vetor ordenado por ordem crescente é:\n");
-				// arrayLib.printArray(arrayLib.smallToBig(arr));
-				// break;
-				// }
-				// case "10": {
-				// arr = arrayLib.removeIndex(arr);
-				// System.out.printf("O novo vetor é:\n");
-				// arrayLib.printArray(arr);
-				// break;
-				// }
+				// switch to second menu screen
+				case "9" -> blockMenu1 = true;
+				// percentagem de positivas no teste selTest
+				case "10" -> {
+					int selTest = arrayLib.scanIndex("Insira o teste para calcular a percentagem de positivas:",
+							nTests);
+					int positives = matrixLib.colMoreThan(grades, selTest, 9.50);
+					System.out.println(positives);
+					System.out.printf("Percentagem de positivas no teste %d: %.2f%%.\n", selTest,
+							(positives / (double) nStudents) * 100.0);
+				}
+				// número de negativas no teste selTest
+				case "11" -> {
+					int selTest = arrayLib.scanIndex("Insira o teste para calcular a percentagem de positivas:",
+							nTests);
+					System.out.printf("O número de negativas no teste %d foi %d.\n", selTest,
+							matrixLib.colLessThan(grades, selTest, 9.49));
+				}
+				// teste em que houve mais negativas
+				case "12" -> System.out.printf("O teste com mais negativas foi o teste %d.\n",
+						matrixLib.colCompareDown(grades, nTests, 9.49));
 				case "18" -> printUC(students, grades);
+				case "19" -> blockMenu1 = false;
 				case "0" -> {
 					sc.close();
 					return;
 				}
 				default -> System.out.println("Opção inválida.");
 			}
-			// wait for input before reprinting menu
-			System.out.printf("Press enter to continue.");
-			sc.nextLine();
+			// if switching menu do not wait for input
+			if (!input.equals("9") && !input.equals("19")) {
+				// wait for input before reprinting menu
+				System.out.printf("Press enter to continue.");
+				sc.nextLine();
+			}
 		}
 	};
 
@@ -119,9 +139,9 @@ public class Ex72 {
 				15) Calcular o desvio padrão das notas num determinado teste.
 				16) Indicar o teste em que as notas apresentam um menor desvio padrão.
 				17) Calcular o número de notas inferiores à média de um determinado teste.
-				18) Imprimir alunos e notas
-				18) Página 1;
-				0) Sair
+				18) Imprimir alunos e notas.
+				19) Página 1;
+				0) Fechar programa.
 				""");
 	}
 }

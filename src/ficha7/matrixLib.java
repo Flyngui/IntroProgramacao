@@ -129,6 +129,30 @@ public class matrixLib {
 		}
 	}
 
+	public static int colMoreThan(double[][] arr, int selCol, double min) {
+		if (arr == null || arr.length == 0 || arr[0].length == 0)
+			throw new IllegalArgumentException("Array inválido.");
+		int count = 0;
+		for (double[] row : arr) {
+			if (row[selCol] >= min) {
+				count += 1;
+			}
+		}
+		return count;
+	}
+
+	public static int colLessThan(double[][] arr, int selCol, double max) {
+		if (arr == null || arr.length == 0 || arr[0].length == 0)
+			throw new IllegalArgumentException("Array inválido.");
+		int count = 0;
+		for (double[] row : arr) {
+			if (row[selCol] <= max) {
+				count += 1;
+			}
+		}
+		return count;
+	}
+
 	public static void colBonusMoreThan(double[][] arr, int selCol, double min, double bonus) {
 		if (arr == null || arr.length == 0 || arr[0].length == 0)
 			throw new IllegalArgumentException("Array inválido.");
@@ -144,9 +168,10 @@ public class matrixLib {
 			throw new IllegalArgumentException("Array inválido.");
 		for (double[] row : arr) {
 			switch (cDecimais) {
-				case 1 -> row[selCol] = Math.round(row[selCol] * 10) / 10;
-				case 2 -> row[selCol] = Math.round(row[selCol] * 100) / 100;
-				case 3 -> row[selCol] = Math.round(row[selCol] * 1000) / 1000;
+				case 0 -> row[selCol] = Math.round(row[selCol]);
+				case 1 -> row[selCol] = Math.round(row[selCol] * 10) / 10.0;
+				case 2 -> row[selCol] = Math.round(row[selCol] * 100) / 100.0;
+				case 3 -> row[selCol] = Math.round(row[selCol] * 1000) / 1000.0;
 			}
 		}
 	}
@@ -173,5 +198,43 @@ public class matrixLib {
 			count += 1;
 		}
 		return sum / count;
+	}
+
+	// compares every row for highest count above min
+	public static int colCompareUp(double[][] arr, double min) {
+		if (arr == null || arr.length == 0 || arr[0].length == 0)
+			throw new IllegalArgumentException("Array inválido.");
+		int count = 0;
+		int highest = 0;
+		int index = 0;
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[i].length; j++) {
+				if (arr[i][j] >= min) {
+					count += 1;
+				}
+			}
+			if (highest <= count) {
+				highest = count;
+				index = i;
+			}
+		}
+		return index;
+	}
+
+	// compares every row for highest count below max
+	public static int colCompareDown(double[][] arr, int nTests, double max) {
+		if (arr == null || arr.length == 0 || arr[0].length == 0)
+			throw new IllegalArgumentException("Array inválido.");
+		int count = 0;
+		int highest = 0;
+		int index = 0;
+		for (int col = 0; col < nTests; col++) {
+			count = colLessThan(arr, col, max);
+			if (highest < count) {
+				highest = count;
+				index = col;
+			}
+		}
+		return index;
 	}
 }
