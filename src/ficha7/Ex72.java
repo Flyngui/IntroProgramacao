@@ -87,6 +87,13 @@ public class Ex72 {
 				// teste em que houve mais negativas
 				case "12" -> System.out.printf("O teste com mais negativas foi o teste %d.\n",
 						matrixLib.colCompareDown(grades, nTests, 9.49));
+				case "17" -> {
+					int selTest = arrayLib.scanIndex("Insira o teste para calcular a percentagem de positivas:",
+							nTests);
+					double avg = matrixLib.colAverage(grades, selTest);
+					System.out.printf("Número de notas inferiores à média %.2f no teste %d: %d.\n", avg, selTest,
+							matrixLib.colLessThan(grades, selTest, avg));
+				}
 				case "18" -> printUC(students, grades);
 				case "19" -> blockMenu1 = false;
 				case "0" -> {

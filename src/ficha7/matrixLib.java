@@ -129,6 +129,7 @@ public class matrixLib {
 		}
 	}
 
+	// how many values above min in selCol
 	public static int colMoreThan(double[][] arr, int selCol, double min) {
 		if (arr == null || arr.length == 0 || arr[0].length == 0)
 			throw new IllegalArgumentException("Array inválido.");
@@ -141,6 +142,7 @@ public class matrixLib {
 		return count;
 	}
 
+	// how many values less than max in selCol
 	public static int colLessThan(double[][] arr, int selCol, double max) {
 		if (arr == null || arr.length == 0 || arr[0].length == 0)
 			throw new IllegalArgumentException("Array inválido.");
@@ -153,6 +155,7 @@ public class matrixLib {
 		return count;
 	}
 
+	// add bonus to any values above min in selCol
 	public static void colBonusMoreThan(double[][] arr, int selCol, double min, double bonus) {
 		if (arr == null || arr.length == 0 || arr[0].length == 0)
 			throw new IllegalArgumentException("Array inválido.");
@@ -236,5 +239,28 @@ public class matrixLib {
 			}
 		}
 		return index;
+	}
+
+	// check how many values in the matrix are even
+	public static int checkEven(double[][] arr) {
+		if (arr == null || arr.length == 0 || arr[0].length == 0)
+			throw new IllegalArgumentException("Array inválido.");
+		int count = 0;
+		for (double[] row : arr) {
+			for (int i = 0; i < row.length; i++) {
+				if (row[i] % 2 == 0) {
+					count++;
+				}
+			}
+		}
+		return count;
+	}
+
+	public static void switchRow(double[][] arr, int row1, int row2) {
+		if (arr == null || arr.length == 0 || arr[0].length == 0)
+			throw new IllegalArgumentException("Array inválido.");
+		double[] arrClone = arr[row1].clone();
+		arr[row1] = arr[row2];
+		arr[row2] = arrClone;
 	}
 }
